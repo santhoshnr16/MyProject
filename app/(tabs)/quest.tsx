@@ -1,55 +1,43 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
-import { useRouter } from 'expo-router';
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { AppColors } from '../../constants/theme';
 
 export default function QuestScreen() {
-  const router = useRouter();
-
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-        {/* Header */}
+      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+        
+        {/* Header Board */}
         <View style={styles.header}>
-          <Text style={styles.monthTitle}>April Quest</Text>
-          <Text style={styles.daysCount}>22 DAYS</Text>
-          <View style={styles.characterAvatar}>
-            <Text style={styles.characterText}>DS</Text>
+          <View style={styles.headerTop}>
+            <Text style={styles.monthTitle}>April Quests</Text>
+            <Text style={styles.daysCount}>22 DAYS LEFT</Text>
+          </View>
+          <View style={styles.characterContainer}>
+            <Text style={styles.characterEmoji}>🏆</Text>
           </View>
         </View>
 
-        {/* Progress Section */}
-        <View style={styles.progressSection}>
-          <Text style={styles.progressTitle}>Earn 20 Quest Points</Text>
-          <View style={styles.progressBarContainer}>
-            <View style={styles.progressBar}>
-              <View style={[styles.progressFill, { width: '0%' }]} />
-            </View>
-            <Text style={styles.progressText}>0/20</Text>
-          </View>
-        </View>
-
-        {/* Friends Quest */}
+        {/* Monthly Progress */}
         <View style={styles.questSection}>
-          <Text style={styles.sectionTitle}>FRIENDS QUEST</Text>
-          
-          <View style={styles.questItem}>
-            <View style={styles.questContent}>
-              <View style={styles.questIcon}>
-                <Text style={styles.iconText}>Follow</Text>
+          <Text style={styles.sectionTitle}>MONTHLY CHALLENGE</Text>
+          <View style={styles.questCard}>
+            <View style={styles.questInfoRow}>
+              <View style={styles.questIconContainer}>
+                <Text style={styles.questIconEmoji}>🥇</Text>
               </View>
-              <View style={styles.questDetails}>
-                <Text style={styles.questTitle}>Follow your first friend</Text>
-                <View style={styles.questProgress}>
-                  <View style={styles.miniProgressBar}>
-                    <View style={[styles.miniProgressFill, { width: '0%' }]} />
+              <View style={styles.questTextContainer}>
+                <Text style={styles.questTitle}>Earn 30 Quest Badges</Text>
+                
+                <View style={styles.progressRow}>
+                  <View style={styles.progressBarBg}>
+                    <View style={[styles.progressBarFill, { width: '40%' }]} />
                   </View>
-                  <Text style={styles.questProgressText}>0/1</Text>
+                  <Text style={styles.progressText}>12/30</Text>
                 </View>
               </View>
             </View>
-            <TouchableOpacity style={styles.questButton} onPress={() => router.push('/add-friends')}>
-              <Text style={styles.questButtonText}>FIND A FRIEND</Text>
-            </TouchableOpacity>
           </View>
         </View>
 
@@ -57,114 +45,93 @@ export default function QuestScreen() {
         <View style={styles.questSection}>
           <Text style={styles.sectionTitle}>DAILY QUESTS</Text>
           
-          {/* Start a streak */}
-          <View style={styles.questItem}>
-            <View style={styles.questContent}>
-              <View style={styles.questIcon}>
-                <Text style={styles.iconText}>Streak</Text>
+          {/* Array Quest */}
+          <View style={styles.questCard}>
+            <View style={styles.questInfoRow}>
+              <View style={styles.questIconContainer}>
+                <Text style={styles.questIconEmoji}>📦</Text>
               </View>
-              <View style={styles.questDetails}>
-                <Text style={styles.questTitle}>Start a streak</Text>
-                <View style={styles.questProgress}>
-                  <View style={styles.miniProgressBar}>
-                    <View style={[styles.miniProgressFill, { width: '0%' }]} />
+              <View style={styles.questTextContainer}>
+                <Text style={styles.questTitle}>Solve 3 Array problems</Text>
+                
+                <View style={styles.progressRow}>
+                  <View style={styles.progressBarBg}>
+                    <View style={[styles.progressBarFill, { width: '66%', backgroundColor: AppColors.blue }]} />
                   </View>
-                  <Text style={styles.questProgressText}>0/1</Text>
+                  <Text style={styles.progressText}>2/3</Text>
                 </View>
               </View>
-            </View>
-            <View style={styles.rewardIcon}>
-              <Text style={styles.rewardText}>Chest</Text>
+              <View style={styles.rewardContainer}>
+                <Text style={styles.rewardEmoji}>🎁</Text>
+              </View>
             </View>
           </View>
 
-          {/* Complete 2 lessons */}
-          <View style={styles.questItem}>
-            <View style={styles.questContent}>
-              <View style={styles.questIcon}>
-                <Text style={styles.iconText}>Lessons</Text>
+          {/* Lesson Quest */}
+          <View style={styles.questCard}>
+            <View style={styles.questInfoRow}>
+              <View style={styles.questIconContainer}>
+                <Text style={styles.questIconEmoji}>📚</Text>
               </View>
-              <View style={styles.questDetails}>
+              <View style={styles.questTextContainer}>
                 <Text style={styles.questTitle}>Complete 2 lessons</Text>
-                <View style={styles.questProgress}>
-                  <View style={styles.miniProgressBar}>
-                    <View style={[styles.miniProgressFill, { width: '0%' }]} />
+                
+                <View style={styles.progressRow}>
+                  <View style={styles.progressBarBg}>
+                    <View style={[styles.progressBarFill, { width: '50%', backgroundColor: AppColors.orange }]} />
                   </View>
-                  <Text style={styles.questProgressText}>0/2</Text>
+                  <Text style={styles.progressText}>1/2</Text>
                 </View>
               </View>
-            </View>
-            <View style={styles.rewardIcon}>
-              <Text style={styles.rewardText}>Chest</Text>
+              <View style={styles.rewardContainer}>
+                <Text style={styles.rewardEmoji}>💎</Text>
+              </View>
             </View>
           </View>
 
-          {/* Score 90% in 2 lessons */}
-          <View style={styles.questItem}>
-            <View style={styles.questContent}>
-              <View style={styles.questIcon}>
-                <Text style={styles.iconText}>Score</Text>
+          {/* Accuracy Quest */}
+          <View style={styles.questCard}>
+            <View style={styles.questInfoRow}>
+              <View style={styles.questIconContainer}>
+                <Text style={styles.questIconEmoji}>🎯</Text>
               </View>
-              <View style={styles.questDetails}>
-                <Text style={styles.questTitle}>Score 90% in 2 lessons</Text>
-                <View style={styles.questProgress}>
-                  <View style={styles.miniProgressBar}>
-                    <View style={[styles.miniProgressFill, { width: '0%' }]} />
+              <View style={styles.questTextContainer}>
+                <Text style={styles.questTitle}>Score 90% in practice</Text>
+                
+                <View style={styles.progressRow}>
+                  <View style={styles.progressBarBg}>
+                    <View style={[styles.progressBarFill, { width: '0%', backgroundColor: AppColors.purple }]} />
                   </View>
-                  <Text style={styles.questProgressText}>0/2</Text>
+                  <Text style={styles.progressText}>0/1</Text>
                 </View>
               </View>
-            </View>
-            <View style={styles.rewardIcon}>
-              <Text style={styles.rewardText}>Chest</Text>
+              <View style={styles.rewardContainer}>
+                <Text style={styles.rewardEmoji}>🎁</Text>
+              </View>
             </View>
           </View>
         </View>
 
-        {/* Bottom Navigation Bar */}
-        <View style={styles.bottomNav}>
-          <TouchableOpacity style={styles.navItem} onPress={() => router.push('/')}>
-            <View style={styles.navIcon}>
-              <Text style={styles.navIconText}>Home</Text>
-            </View>
-            <Text style={styles.navLabel}>Home</Text>
-          </TouchableOpacity>
+        {/* Friends Quest */}
+        <View style={styles.questSection}>
+          <Text style={styles.sectionTitle}>FRIEND QUESTS</Text>
           
-          <TouchableOpacity style={styles.navItem}>
-            <View style={[styles.navIcon, styles.activeNavIcon]}>
-              <Text style={[styles.navIconText, styles.activeNavText]}>Trophy</Text>
+          <View style={[styles.questCard, { borderColor: AppColors.purple }]}>
+            <View style={styles.questInfoRow}>
+              <View style={[styles.questIconContainer, { backgroundColor: AppColors.purple + '20' }]}>
+                <Text style={styles.questIconEmoji}>👥</Text>
+              </View>
+              <View style={styles.questTextContainer}>
+                <Text style={styles.questTitle}>Follow your first friend</Text>
+                <Text style={styles.questSubtitle}>Programming is better together!</Text>
+              </View>
             </View>
-            <Text style={[styles.navLabel, styles.activeNavText]}>Quest</Text>
-          </TouchableOpacity>
-          
-          <TouchableOpacity style={styles.navItem} onPress={() => router.push('/add-friends')}>
-            <View style={[styles.navIcon, styles.inactiveNavIcon]}>
-              <Text style={[styles.navIconText, styles.inactiveNavText]}>Users</Text>
-            </View>
-            <Text style={[styles.navLabel, styles.inactiveNavText]}>Friends</Text>
-          </TouchableOpacity>
-          
-          <TouchableOpacity style={styles.navItem}>
-            <View style={[styles.navIcon, styles.inactiveNavIcon]}>
-              <Text style={[styles.navIconText, styles.inactiveNavText]}>Shop</Text>
-            </View>
-            <Text style={[styles.navLabel, styles.inactiveNavText]}>Shop</Text>
-          </TouchableOpacity>
-          
-          <TouchableOpacity style={styles.navItem}>
-            <View style={[styles.navIcon, styles.inactiveNavIcon]}>
-              <Text style={[styles.navIconText, styles.inactiveNavText]}>Hearts</Text>
-            </View>
-            <Text style={[styles.navLabel, styles.inactiveNavText]}>Hearts</Text>
-          </TouchableOpacity>
-          
-          <TouchableOpacity style={styles.navItem} onPress={() => router.push('/profile')}>
-            <View style={[styles.navIcon, styles.inactiveNavIcon]}>
-              <Text style={[styles.navIconText, styles.inactiveNavText]}>Owl</Text>
-            </View>
-            <Text style={[styles.navLabel, styles.inactiveNavText]}>Profile</Text>
-          </TouchableOpacity>
+            <TouchableOpacity style={styles.actionButton}>
+              <Text style={styles.actionButtonText}>FIND FRIENDS</Text>
+            </TouchableOpacity>
+          </View>
         </View>
+
       </ScrollView>
     </SafeAreaView>
   );
@@ -173,220 +140,154 @@ export default function QuestScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1C1C1E',
+    backgroundColor: AppColors.bg,
   },
   content: {
-    flex: 1,
     paddingHorizontal: 20,
+    paddingTop: 20,
+    paddingBottom: 40,
   },
   header: {
-    backgroundColor: '#58CC02',
-    padding: 20,
-    borderRadius: 16,
-    marginTop: 20,
-    alignItems: 'center',
+    backgroundColor: AppColors.primary,
+    borderRadius: 20,
+    padding: 24,
+    marginBottom: 24,
     position: 'relative',
+    overflow: 'hidden',
+  },
+  headerTop: {
+    marginBottom: 10,
+    zIndex: 2,
   },
   monthTitle: {
-    color: '#fff',
-    fontSize: 24,
+    color: '#0D1117',
+    fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 4,
   },
   daysCount: {
-    color: '#fff',
-    fontSize: 18,
-    opacity: 0.9,
-    marginBottom: 16,
+    color: 'rgba(13,17,23,0.7)',
+    fontSize: 14,
+    fontWeight: 'bold',
+    letterSpacing: 1,
   },
-  characterAvatar: {
-    width: 80,
-    height: 80,
+  characterContainer: {
+    position: 'absolute',
+    right: 20,
+    top: 15,
     backgroundColor: '#fff',
-    borderRadius: 40,
+    width: 64,
+    height: 64,
+    borderRadius: 32,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 4,
-    borderColor: '#58A700',
+    borderWidth: 3,
+    borderColor: 'rgba(13,17,23,0.1)',
   },
-  characterText: {
-    color: '#58CC02',
-    fontSize: 24,
+  characterEmoji: {
+    fontSize: 32,
+  },
+  questSection: {
+    marginBottom: 24,
+  },
+  sectionTitle: {
+    color: AppColors.textPrimary,
+    fontSize: 16,
     fontWeight: 'bold',
+    letterSpacing: 1,
+    marginBottom: 16,
   },
-  progressSection: {
-    backgroundColor: '#2C2C2E',
-    padding: 20,
+  questCard: {
+    backgroundColor: AppColors.bgCard,
+    borderWidth: 1,
+    borderColor: AppColors.borderLight,
     borderRadius: 16,
-    marginTop: 20,
-  },
-  progressTitle: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: '600',
+    padding: 16,
     marginBottom: 12,
   },
-  progressBarContainer: {
+  questInfoRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  questIconContainer: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    backgroundColor: AppColors.bgElevated,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: AppColors.border,
+    marginRight: 16,
+  },
+  questIconEmoji: {
+    fontSize: 24,
+  },
+  questTextContainer: {
+    flex: 1,
+  },
+  questTitle: {
+    color: AppColors.textPrimary,
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  questSubtitle: {
+    color: AppColors.textSecondary,
+    fontSize: 14,
+    marginBottom: 12,
+  },
+  progressRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
   },
-  progressBar: {
+  progressBarBg: {
     flex: 1,
     height: 8,
-    backgroundColor: '#3A3A3C',
+    backgroundColor: AppColors.border,
     borderRadius: 4,
     overflow: 'hidden',
   },
-  progressFill: {
+  progressBarFill: {
     height: '100%',
-    backgroundColor: '#58CC02',
+    backgroundColor: AppColors.primary,
     borderRadius: 4,
   },
   progressText: {
-    color: '#8E8E93',
-    fontSize: 14,
-    fontWeight: '600',
-    minWidth: 40,
-  },
-  questSection: {
-    marginTop: 24,
-  },
-  sectionTitle: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 16,
-  },
-  questItem: {
-    backgroundColor: '#2C2C2E',
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  questContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-  },
-  questIcon: {
-    width: 50,
-    height: 50,
-    backgroundColor: '#3A3A3C',
-    borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 16,
-  },
-  iconText: {
-    color: '#58CC02',
-    fontSize: 12,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  questDetails: {
-    flex: 1,
-  },
-  questTitle: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
-    marginBottom: 8,
-  },
-  questProgress: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  miniProgressBar: {
-    flex: 1,
-    height: 6,
-    backgroundColor: '#3A3A3C',
-    borderRadius: 3,
-    overflow: 'hidden',
-    maxWidth: 80,
-  },
-  miniProgressFill: {
-    height: '100%',
-    backgroundColor: '#58CC02',
-    borderRadius: 3,
-  },
-  questProgressText: {
-    color: '#8E8E93',
-    fontSize: 12,
-    fontWeight: '600',
-  },
-  questButton: {
-    backgroundColor: '#58CC02',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 8,
-  },
-  questButtonText: {
-    color: '#fff',
+    color: AppColors.textSecondary,
     fontSize: 14,
     fontWeight: 'bold',
+    width: 45,
+    textAlign: 'right',
   },
-  rewardIcon: {
-    width: 40,
-    height: 40,
-    backgroundColor: '#3A3A3C',
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
+  rewardContainer: {
+    width: 48,
+    height: 48,
     marginLeft: 12,
-  },
-  rewardText: {
-    color: '#FF9600',
-    fontSize: 10,
-    fontWeight: 'bold',
-  },
-  bottomNav: {
-    backgroundColor: '#2C2C2E',
-    paddingVertical: 12,
-    paddingHorizontal: 10,
-    borderTopWidth: 1,
-    borderTopColor: '#3A3A3C',
-    flexDirection: 'row',
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  navItem: {
-    flex: 1,
-    alignItems: 'center',
-    gap: 4,
-  },
-  navIcon: {
-    width: 32,
-    height: 32,
-    backgroundColor: '#3A3A3C',
-    borderRadius: 16,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: AppColors.bgElevated,
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: AppColors.border,
   },
-  navIconText: {
-    color: '#8E8E93',
-    fontSize: 10,
+  rewardEmoji: {
+    fontSize: 24,
+  },
+  actionButton: {
+    backgroundColor: AppColors.purple,
+    paddingVertical: 14,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginTop: 16,
+    borderBottomWidth: 4,
+    borderBottomColor: AppColors.purpleDark,
+  },
+  actionButtonText: {
+    color: '#000',
+    fontSize: 14,
     fontWeight: 'bold',
-  },
-  navLabel: {
-    color: '#8E8E93',
-    fontSize: 10,
-    fontWeight: '500',
-  },
-  activeNavIcon: {
-    backgroundColor: '#58CC02',
-  },
-  activeNavText: {
-    color: '#fff',
-  },
-  inactiveNavIcon: {
-    backgroundColor: '#3A3A3C',
-  },
-  inactiveNavText: {
-    color: '#8E8E93',
+    letterSpacing: 1,
   },
 });
