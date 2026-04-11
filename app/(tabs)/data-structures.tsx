@@ -39,8 +39,8 @@ const generateNodes = (): NodeData[] => {
     nodes.push({
       id: i,
       type,
-      title: i === 9 ? 'Sorting Algorithms' : `Level ${i}`,
-      message: i === 9 ? 'Master the fundamentals of sorting data, starting with Bubble Sort!' : `Complete this to master Data Structures.`,
+      title: i === 9 ? 'Sorting Algorithms' : (i === 7 ? 'Trees' : `Level ${i}`),
+      message: i === 9 ? 'Master the fundamentals of sorting data, starting with Bubble Sort!' : (i === 7 ? 'Visualize Breadth-First and Depth-First tree traversal algorithms!' : `Complete this to master Data Structures.`),
       side: sidePattern[i-1],
       yPos: INITIAL_Y + (i - 1) * VERTICAL_SPACING,
     });
@@ -277,11 +277,13 @@ export default function DataStructuresScreen() {
                  closeModal();
                  if (selectedNode?.title === 'Sorting Algorithms') {
                    setTimeout(() => router.push('/lesson/sorting'), 200);
+                 } else if (selectedNode?.title === 'Trees') {
+                   setTimeout(() => router.push('/lesson/trees'), 200);
                  }
                }}
             >
               <Text style={styles.modalButtonText}>
-                {selectedNode?.title === 'Sorting Algorithms' ? 'START LESSON' : 'Got it!'}
+                {(selectedNode?.title === 'Sorting Algorithms' || selectedNode?.title === 'Trees') ? 'START LESSON' : 'Got it!'}
               </Text>
             </TouchableOpacity>
           </Animated.View>
